@@ -77,5 +77,17 @@ class KaryawanController extends Controller
         return view('karyawan.index')->with('karyawan', $karyawan);
     }
 
+    public function cutiList()
+    {
+        $karyawanCuti = Karyawan::whereHas('cuti')->get();
+
+        $sisaCuti = Karyawan::select('nomor_induk', 'nama', \DB::raw('12 - COUNT(cuti.id) as sisa_cuti'))
+            ->leftJoin('cuti', 'karyawans.id', '=', 'cuti.karyawan_id')
+            ->groupBy('karyawans.id')
+            ->get();
+
+        return view('karyawan.listCuti', compact('karyawanCuti', 'sisaCuti'));
+    }  
+
 
 }

@@ -32,3 +32,5 @@ Route::put('/karyawan/{id}/update', [KaryawanController::class, 'update'])->name
 Route::delete('/karyawan/{id}/delete', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
 
 Route::get('/karyawan/cuti', [KaryawanController::class, 'cuti'])->name('karyawan.cuti');
+
+Route::get('/karyawan/cuti-list', [KaryawanController::class, 'cutiList'])->name('karyawan.cutiList');
